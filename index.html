@@ -6,14 +6,13 @@
     <title>Quiz</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <div class="container">
+    <div  id="startGame" class="container">
         <nav class="nav-item text-center">
-            <li>
-                <a href="#">Highscore</a>
-            </li>
+            
             <br>
             <li>
                 Time:
@@ -22,7 +21,12 @@
         </nav>
     </div>
 
-    <div class="containter">
+   <div id="highScore">
+       <input type="text" id="initialName">
+       <button id="addHighScore"> Add High Score</button>
+   </div>
+
+    <div id="begin" class="containter">
         <div class="row">
             <h1>Let's Play A Coding Quiz!</h1>
             <button id="startBtn" class="btn btn-info">Start</button>
@@ -30,7 +34,7 @@
     </div>
 
 
-
+<script src="./app.js"></script>
 
 </body>
 </html>

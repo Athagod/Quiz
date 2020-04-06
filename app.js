@@ -5,21 +5,41 @@ const correctDiv = document.querySelector("#correctDiv");
 const incorrectDiv = document.querySelector("#incorrectDiv");
 const hide = document.querySelector(".hide")
 
-let time = question.length * 20;
-let timer = document.querySelector("#timer");
-let score = 0;
+const startGameDiv = document.getElementById("startGame")
+startGameDiv.classList.add("hidden")
+
+
+const beginDiv = document.getElementById("begin")
+const highScoreDiv = document.getElementById("highScore")
+highScoreDiv.classList.add("hidden")
 
 const questions = [
-
-    
+{
+    question: "How do you write an ID selector in JavaScript", 
+    choices: ["#", ".", "!", "%"],
+    answer: "#"
+}, 
+{
+    question: "What is the full name of CSS?",
+    choices: ["Client Side Script", "Cassading Style Steet", "Coding Style Script", "Case Server Script"],
+    answer: "Cassading Style Steet",
+}, 
+{
+    question: "What does ES6 stand for?",
+    choices: ["Extra Strength 6", "Example Script 6", "ECMA Script 6", "Elon Script 6"],
+    answer: "ECMA Script 6"
+}
 ]
 
 
+let time = questions.length * 20;
+let timer = document.querySelector(".timer");
+let score = 0;
 
-//timer function 
+let setIntervalID;
+//timer function  
 
-function countDown()    {
-    timerInterval = setInterval(function(){
+function countDown()   {
         time--;
 
         timer.textContent = time;
@@ -28,7 +48,6 @@ function countDown()    {
             endGame();
             alert("Time's Up");
         }
-    }, 1000);
 }
 
 
@@ -70,11 +89,11 @@ function showQuestion() {
 
 startBtn.addEventListener("click", function(){
 
-    gameBegin.classList.add("hide");
+    startGameDiv.classList.remove("hidden")
+    beginDiv.classList.add("hidden")
 
-    questionBox.classList.remove("hide");
+       setIntervalID = setInterval(countDown, 1000)
 
-    countDown();
 
     showQuestion();
 
