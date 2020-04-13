@@ -1,123 +1,174 @@
 const startBtn = document.querySelector("#startBtn");
 const nextBtn = document.querySelector("#nextBtn");
 const questionBox = document.querySelector("#questionBox");
-const correctDiv = document.querySelector("#correctDiv");
-const incorrectDiv = document.querySelector("#incorrectDiv");
+// const correctDiv = document.querySelector("#correctDiv");
+// const incorrectDiv = document.querySelector("#incorrectDiv");
 const hide = document.querySelector(".hide")
 
 const startGameDiv = document.getElementById("startGame")
-startGameDiv.classList.add("hidden")
+
 
 
 const beginDiv = document.getElementById("begin")
 const highScoreDiv = document.getElementById("highScore")
 highScoreDiv.classList.add("hidden")
 
+const wrongDiv = document.getElementById("wrongDiv")
+wrongDiv.classList.add("hidden")
+
+const correctDiv = document.getElementById("correctDiv")
+correctDiv.classList.add("hidden")
+
+const choiceContainer = document.querySelector(".choice-container")
+
 const questions = [
-{
-    question: "How do you write an ID selector in JavaScript", 
-    choices: ["#", ".", "!", "%"],
-    answer: "#"
-}, 
-{
-    question: "What is the full name of CSS?",
-    choices: ["Client Side Script", "Cassading Style Steet", "Coding Style Script", "Case Server Script"],
-    answer: "Cassading Style Steet",
-}, 
-{
-    question: "What does ES6 stand for?",
-    choices: ["Extra Strength 6", "Example Script 6", "ECMA Script 6", "Elon Script 6"],
-    answer: "ECMA Script 6"
-}
+    {
+        question: "How do you write an ID selector in JavaScript",
+        choices: ["#", ".", "!", "%"],
+        answer: "#"
+    },
+    {
+        question: "What is the full name of CSS?",
+        choices: ["Client Side Script", "Cassading Style Sheet", "Coding Style Script", "Case Server Script"],
+        answer: "Cassading Style Sheet",
+    },
+    {
+        question: "What does ES6 stand for?",
+        choices: ["Extra Strength 6", "Example Script 6", "ECMA Script 6", "Elon Script 6"],
+        answer: "ECMA Script 6"
+    }
 ]
 
-
-let time = questions.length * 20;
+let time = questions.length * 15;
 let timer = document.querySelector(".timer");
 let score = 0;
-
+timer.textContent = score
 let setIntervalID;
 //timer function  
 
-function countDown()   {
-        time--;
+let questionIndex = 0;
 
-        timer.textContent = time;
 
-        if (time <= 0 ){
-            endGame();
-            alert("Time's Up");
+function countDown() {
+    time--;
+
+    timer.textContent = time;
+console.log(time)
+    if (time <= 0) {
+        clearInterval(setIntervalID)
+        endGame();
+        alert("Time's Up");
+    }
+    else {
+
+
+        showQuestion();
+
+        if (time % 15 === 0) {
+            questionIndex++
         }
-}
 
+    }
+}
 
 //the questions function 
 
 function showQuestion() {
-   let questionIndex = 0;
-   let currentQuestion = questions[questionIndex]; 
 
-   const questionText = document.querySelector(".question-text");
-   questionText.textContent = currentQuestion;
+    choiceContainer.textContent = ""
+    const questionText = document.querySelector(".question-text");
 
-   currentQuestion.choices.forEach(function (choice) {
+    if (questions[questionIndex] != undefined) {
+        let currentQuestion = questions[questionIndex].question;
+        questionText.textContent = currentQuestion;
+        let currentChoices = questions[questionIndex].choices
+        currentChoices.forEach((choice, i) => {
 
-    const button = document.createElement("button");
-    button.setAttribute("class", "btn btn-primary button-display");
+            const button = document.createElement("button");
+            button.setAttribute("class", "btn btn-primary button-display answerbutton");
+            button.textContent = i + 1 + ". " + choice;
+            button.addEventListener("click", function () {
+                let userChoice = this.textContent
+                if (questions[questionIndex] != undefined) {
+                    let answer = questions[questionIndex].answer
+                    console.log(answer, userChoice)
+                    if (userChoice.indexOf(answer) > -1) {
+                        correctDiv.classList.remove("hidden")
+                        clearInterval(setIntervalID)
+                        setTimeout(nextQuestion, 3000)
 
-    //adding the event listener
+                    }
+                }
 
-    button.addEventListener("click", function (event) {
-        event.preventDefault();
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        } else {
-            time -= 10
-        }
 
-    });
+            });
 
-    button.textContent = choice;
+            choiceContainer.appendChild(button)
 
-    choiceOption.appendChild(Button);
-       
-   });
+            const br = document.createElement("br")
+            choiceContainer.appendChild(br)
+        });
+    }
+
+
 
 
 }
 
 
-startBtn.addEventListener("click", function(){
+function nextQuestion() {
+    questionIndex++
+    correctDiv.classList.add("hidden")
 
-    startGameDiv.classList.remove("hidden")
+    if (questionIndex < questions.length){
+        setIntervalID = setInterval(countDown, 1000)
+    }
+ 
+
+
+}
+// creating right or wrong dlisplay 
+
+function selectBtn(e) {
+
+    if (e.target.textContent === currentQuestion.answer) {
+        correctDiv.setAttribute("class", "correct");
+    }
+    else {
+        wrongDiv.setAttribute === ("class", "wrong");
+    }
+
+
+}
+
+startBtn.addEventListener("click", function () {
     beginDiv.classList.add("hidden")
+    questionBox.classList.remove("hidden")
 
-       setIntervalID = setInterval(countDown, 1000)
+    setIntervalID = setInterval(countDown, 1000)
 
 
-    showQuestion();
 
-    
 })
 
-function showScore() {
+// function showScore() {
 
-    gameBegin.classList.add("hide");
+//     gameBegin.classList.add("hide");
 
-    questionBox.classList.add("hide");
+//     questionBox.classList.add("hide");
 
-    gameOver.classList.add("hide");
+//     gameOver.classList.add("hide");
 
-}
+// }
 
-function endQuiz() {
+// function endQuiz() {
 
-    gameScreen.classList.add("hide");
+//     gameScreen.classList.add("hide");
 
-    gameOver.classList.remove("hide");
+//     gameOver.classList.remove("hide");
 
-    const score = {
-        score: Math.floor(Math.random()*50)
-    }
-}
+//     const score = {
+//         score: Math.floor(Math.random()*50)
+//     }
+// }
 

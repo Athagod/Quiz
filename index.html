@@ -10,28 +10,50 @@
 </head>
 <body>
 
-    <div  id="startGame" class="container">
+    <div  id="startGame" class="container-fluid">
+        <span id="viewHighScore">View HighScore</span>
         <nav class="nav-item text-center">
+      
             
-            <br>
-            <li>
-                Time:
-                <span class="timer">0</span>
-            </li>
+               
+         <span id="timerDisplay">
+              Timer:    <span class="timer"></span>
+         </span>  
+       
         </nav>
     </div>
+    <div class="container">
 
-   <div id="highScore">
-       <input type="text" id="initialName">
-       <button id="addHighScore"> Add High Score</button>
-   </div>
-
-    <div id="begin" class="containter">
-        <div class="row">
-            <h1>Let's Play A Coding Quiz!</h1>
-            <button id="startBtn" class="btn btn-info">Start</button>
+        <div id="highScore"  class="hidden">
+            <input type="text" id="initialName">
+            <button id="addHighScore"> Add High Score</button>
         </div>
+     
+         <div id="begin" class="containter">
+             <div class="row">
+                 <h1>Let's Play A Coding Quiz!</h1>
+                 <button id="startBtn" class="btn btn-info">Start</button>
+             </div>
+         </div>
+     
+         <div id="questionBox" class="container  hidden">
+             <h3 id="question" class="question-text"></h3>
+     
+             <div class="choice-container"></div>
+     
+             <div id="correctDiv">
+                 <p>Correct!</p>
+             </div>
+     
+             <div id="wrongDiv">
+                 <p>Wrong!</p>
+             </div>
+     
+     
+         </div>
     </div>
+   
+
 
 
 <script src="./app.js"></script>
