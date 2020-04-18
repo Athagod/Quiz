@@ -1,8 +1,6 @@
 const startBtn = document.querySelector("#startBtn");
 const nextBtn = document.querySelector("#nextBtn");
 const questionBox = document.querySelector("#questionBox");
-// const correctDiv = document.querySelector("#correctDiv");
-// const incorrectDiv = document.querySelector("#incorrectDiv");
 const hide = document.querySelector(".hide")
 
 const startGameDiv = document.getElementById("startGame")
