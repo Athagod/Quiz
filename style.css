@@ -1,3 +1,10 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: azure;
+}
+
+
 .hidden {
     display: none;
 }
@@ -7,4 +14,9 @@
 }
 #timerDisplay {
      float: right;
+}
+
+.choice-container {
+    width: 100%;
+    margin-top: 100px;
 }

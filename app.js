@@ -55,7 +55,7 @@ console.log(time)
     if (time <= 0) {
         clearInterval(setIntervalID)
         endGame();
-        alert("Time's Up");
+    
     }
     else {
 
@@ -66,7 +66,7 @@ console.log(time)
             questionIndex++
         }
 
-    }
+    } 
 }
 
 //the questions function 
@@ -96,7 +96,11 @@ function showQuestion() {
                         setTimeout(nextQuestion, 3000)
 
                     }
-                }
+
+                        
+                    
+                } 
+                else (userChoice.indexOf(answer)) < wrongDiv.classList.remove("hidden")
 
 
             });
