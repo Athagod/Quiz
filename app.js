@@ -127,19 +127,8 @@ function nextQuestion() {
 
 
 }
-// creating right or wrong dlisplay 
+ 
 
-function selectBtn(e) {
-
-    if (e.target.textContent === currentQuestion.answer) {
-        correctDiv.setAttribute("class", "correct");
-    }
-    else {
-        wrongDiv.setAttribute === ("class", "wrong");
-    }
-
-
-}
 
 startBtn.addEventListener("click", function () {
     beginDiv.classList.add("hidden")
@@ -151,24 +140,4 @@ startBtn.addEventListener("click", function () {
 
 })
 
-// function showScore() {
-
-//     gameBegin.classList.add("hide");
-
-//     questionBox.classList.add("hide");
-
-//     gameOver.classList.add("hide");
-
-// }
-
-// function endQuiz() {
-
-//     gameScreen.classList.add("hide");
-
-//     gameOver.classList.remove("hide");
-
-//     const score = {
-//         score: Math.floor(Math.random()*50)
-//     }
-// }
 
