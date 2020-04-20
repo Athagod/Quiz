@@ -34,7 +34,13 @@ const questions = [
         question: "What does ES6 stand for?",
         choices: ["Extra Strength 6", "Example Script 6", "ECMA Script 6", "Elon Script 6"],
         answer: "ECMA Script 6"
+    },
+    {
+        question: "What does html stand for?",
+        choices: ["Hypetext Makeup Language","Hypertext Markup Language","Highertext Markup Language","Hypertext Makeup Logo"],
+        answer: "Hypertext Markup Language"
     }
+
 ]
 
 let time = questions.length * 15;
