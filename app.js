@@ -92,7 +92,19 @@ function showQuestion() {
                     console.log(answer, userChoice)
                     if (userChoice.indexOf(answer) > -1) {
                         correctDiv.classList.remove("hidden")
+                        wrongDiv.classList.add("hidden")
                         clearInterval(setIntervalID)
+                        setTimeout(nextQuestion, 3000)
+
+                    }
+                    else {
+                        wrongDiv.classList.remove("hidden")
+                        correctDiv.classList.add("hidden")
+
+                        clearInterval(setIntervalID)
+                        time = time -15
+
+                        
                         setTimeout(nextQuestion, 3000)
 
                     }
@@ -100,7 +112,7 @@ function showQuestion() {
                         
                     
                 } 
-                else (userChoice.indexOf(answer)) < wrongDiv.classList.remove("hidden")
+                
 
 
             });
@@ -118,14 +130,46 @@ function showQuestion() {
 }
 
 
-function nextQuestion() {
-    questionIndex++
-    correctDiv.classList.add("hidden")
+document.getElementById("addHighScore").addEventListener("click", function(){
 
-    if (questionIndex < questions.length){
-        setIntervalID = setInterval(countDown, 1000)
+    var initials = document.getElementById("initialName").value
+     localStorage.setItem("initials", initials)
+     localStorage.setItem("highScores", time)
+     highScoreDiv.classList.add("hidden")
+     beginDiv.classList.remove("hidden")
+     timer.textContent = 0;
+})
+
+function nextQuestion() {
+    console.log(time)
+
+
+    if (time > 0 && time < 15) {
+        questionBox.classList.add("hidden")
+        highScoreDiv.classList.remove("hidden")
+        timer.textContent = time;
     }
- 
+  else if(time > 0){
+        questionIndex++
+        correctDiv.classList.add("hidden")
+        wrongDiv.classList.add("hidden")
+    
+        if (questionIndex < questions.length){
+            setIntervalID = setInterval(countDown, 1000)
+        }
+        else {
+            questionBox.classList.add("hidden")
+            highScoreDiv.classList.remove("hidden")
+            timer.textContent = time;
+        }
+       
+     
+    }
+    else{
+        questionBox.classList.add("hidden")
+        highScoreDiv.classList.remove("hidden")
+        timer.textContent = time;
+    }
 
 
 }
